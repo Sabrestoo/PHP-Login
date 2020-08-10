@@ -5,3 +5,6 @@ if (!defined('__CONFIG__')) {
     exit('You do not have a config file');
 }
 
+require 'classes/db.php';
+
+$conn = DB::get_connection();
