@@ -15,7 +15,8 @@ require_once './includes/config.php';
     <meta name="robots" content="follow">
     <title>Register Page</title>
     <base href="/" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.24/css/uikit.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.24/css/uikit.min.css" />
+	<link rel="stylesheet" href="./php-login/assets/css/styles.css">
   </head>
   <body>
   	<div class="uk-section uk-container">
@@ -33,7 +34,10 @@ require_once './includes/config.php';
 			        <div class="uk-form-controls">
 			            <input class="uk-input" id="form-stacked-text" type="password" required='required' placeholder="Your Password">
 			        </div>
-			    </div>
+				</div>
+				
+					<div class="uk-margin uk-alert uk-alert-danger js-error register-error"></div>
+					
 			    <div class="uk-margin">
 			        <button class="uk-button uk-button-default" type="submit">Register</button>
 			    </div>
