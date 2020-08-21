@@ -20,6 +20,24 @@ $(document).on('submit', 'form.js-register', function(event) {
                 }
 
                 _error.hide();
+
+        fetch('/php-login/api/register.php', 
+        {
+            method: 'POST',
+            mode:    'cors',
+            headers: {
+                'Content-Type': 'application/json',  
+                'Accept':       'application/json'   
+              },
+            body: JSON.stringify({min: 1, max: 100})
+        })
+                .then((response) => response.json())
+                .then(function(data) {
+                    
+                })
+                .catch(function(error){
+
+                });
         
     return false;
 });
