@@ -5,39 +5,45 @@ $(document).on('submit', 'form.js-register', function(event) {
 
        let _error = $(".js-error", _form);
 
-       let data = {
+       let dataObj = {
            email: $("input[type='email']", _form).val(),
            password: $("input[type='password']", _form).val()
                   }
-
         
-                  if(data.email.length < 6) {
-                      _error.text("Please enter a valid email address").show();
-                      return false;
-                } else if(data.password.length < 5) {
-                    _error.text("please enter a password longer than 4 characters").show();
-                    return false;
-                }
+        if(dataObj.email.length < 6) {
+            _error.text("Please enter a valid email address").show();
+            return false;
+    } else if(dataObj.password.length < 5) {
+        _error.text("please enter a password longer than 4 characters").show();
+        return false;
+    }
+    _error.hide();
+      
+   $.ajax({
+		type: 'POST',
+		url: 'php-login/api/register.php',
+		data: dataObj,
+		dataType: 'json',
+		async: true,
+	})
+	.done(function ajaxDone(data) {
+		// Whatever data is 
+		if(data.redirect !== undefined) {
+			window.location = data.redirect;
+		} else if(data.error !== undefined) {
+			_error
+				.text(data.error)
+				.show();
+		}
+	})
+	.fail(function ajaxFailed(e) {
+		// This failed 
+	})
+	.always(function ajaxAlwaysDoThis(data) {
+		// Always do
+		console.log('Always');
+	})
 
-                _error.hide();
-
-        fetch('/php-login/api/register.php', 
-        {
-            method: 'POST',
-            mode:    'cors',
-            headers: {
-                'Content-Type': 'application/json',  
-                'Accept':       'application/json'   
-              },
-            body: JSON.stringify({min: 1, max: 100})
-        })
-                .then((response) => response.json())
-                .then(function(data) {
-                    
-                })
-                .catch(function(error){
-
-                });
-        
-    return false;
+	return false;
 });
+
