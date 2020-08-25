@@ -34,6 +34,9 @@ require_once './includes/config.php';
 			            <input class="uk-input" id="form-stacked-text" type="password" required='required' placeholder="Your Password">
 			        </div>
 			    </div>
+
+				<div class="uk-margin uk-alert uk-alert-danger js-login-error register-error"></div>
+
 			    <div class="uk-margin">
 			        <button class="uk-button uk-button-default" type="submit">Login</button>
 			    </div>
